@@ -1,5 +1,9 @@
 name: Build and Push Ubuntu Base Image
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # 新任务开始时自动取消旧的排队任务
+
 on:
   push:
     branches: [ "main", "master" ]
@@ -11,7 +15,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04-arm64
+    runs-on: ubuntu-22.04-arm
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
