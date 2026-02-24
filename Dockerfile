@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     postgresql-client \
+    # Oracle 运行需要的依赖库
+    libaio1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
