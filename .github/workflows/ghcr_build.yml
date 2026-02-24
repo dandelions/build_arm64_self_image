@@ -48,7 +48,6 @@ jobs:
           # 镜像标签：latest 和 包含 commit id 的标签
           tags: |
             ghcr.io/${{ github.repository_owner }}/my-ubuntu-base:latest
-            #ghcr.io/${{ github.repository_owner }}/my-ubuntu-base:${{ github.sha }}
           # 启用缓存以加速后续构建
           cache-from: type=gha
           cache-to: type=gha,mode=max
