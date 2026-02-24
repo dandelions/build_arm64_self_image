@@ -30,11 +30,13 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /opt/oracle && \
     ARCH=$(uname -m) && \
     if [ "$ARCH" = "x86_64" ]; then \
-      URL="https://download.oracle.com"; \
+      # AMD64 架构 21.13 版本
+      URL="https://download.oracle.com/otn_software/linux/instantclient/2121000/instantclient-basic-linux.x64-21.21.0.0.0dbru.zip"; \
     elif [ "$ARCH" = "aarch64" ]; then \
-      URL="https://download.oracle.com"; \
+      # ARM64 架构 19.19 版本
+      URL="https://download.oracle.com/otn_software/linux/instantclient/1930000/instantclient-basic-linux.arm64-19.30.0.0.0dbru.zip"; \
     fi && \
-    wget $URL -O /tmp/instantclient.zip && \
+    wget --no-check-certificate $URL -O /tmp/instantclient.zip && \
     unzip /tmp/instantclient.zip -d /opt/oracle && \
     mv /opt/oracle/instantclient_* /opt/oracle/instantclient && \
     rm -rf /tmp/instantclient.zip
