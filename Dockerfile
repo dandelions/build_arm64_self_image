@@ -26,6 +26,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. 安装 Oracle Instant Client (以 21.x 版本为例)
+
+#如果使用本地包，可以上传到libs下
+#COPY libs/instantclient-*.zip /tmp/
+#然后继续unzip执行即可
+
+#或者使用python的oracledb
+# 删掉所有关于 Oracle Instant Client 的 RUN 和 ENV 配置
+# 只需要在 pip install 时加上：
+# RUN pip3 install --no-cache-dir oracledb
+
 # 自动检测架构 (AMD64 或 ARM64) 并下载对应的压缩包
 RUN mkdir -p /opt/oracle && \
     ARCH=$(uname -m) && \
