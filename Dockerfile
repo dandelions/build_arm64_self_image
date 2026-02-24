@@ -4,6 +4,10 @@ FROM ubuntu:22.04
 # 设置环境变量，避免交互式安装时的提示
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 设置 Oracle 环境变量
+ENV ORACLE_HOME=/opt/oracle/instantclient
+ENV LD_LIBRARY_PATH=/opt/oracle/instantclient:$LD_LIBRARY_PATH
+
 # 更新源并安装基础软件
 RUN apt-get update && apt-get install -y \
     curl \
